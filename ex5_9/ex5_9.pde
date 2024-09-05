@@ -20,6 +20,11 @@
         // Display circle at x location 
         stroke(160);                     // Almost removing the the black line around the circle 
         fill(175);                       // Setting the color of the ball to grey
-        int ballSize  =  32;
-        ellipse(x,y,ballSize,ballSize);  // Placing the ball at x- & y-coordinates and setting the ballSize
+        int x_ballSize  =  32;
+        int y_ballSize  =  32;
+        if((y > height) || (y < 0)  && (x > width) || (x  <  0)){
+          y_ballSize  +=  (int)random(20,44);
+          x_ballSize  +=  (int)random(20,44);
+        }
+        ellipse(x,y,x_ballSize,y_ballSize);  // Placing the ball at x- & y-coordinates and setting the ballSize
     }
