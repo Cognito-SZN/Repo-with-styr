@@ -2,12 +2,13 @@
    float y          =  40;        // Starting point of the ball on the Y-axis 
    float x_speed    =  1;         // Speed of the ball on the X-axis 
    float y_speed    =  1;         // Speed of the ball on the Y-axis
-
+   
 
 void setup(){
   background(0,0,0);
   size(400,  400);
   smooth(); 
+  
 }
 
 void draw(){
@@ -48,21 +49,26 @@ void draw(){
  
         x  =  x  +  x_speed;             // Moving the ball 1 pixel at a time along the X-axis
         if ((x > width) || (x  <  0)) {  // When the ball hits a corner at the X-axis do following code
-             x_speed  =  x_speed * -2.0;   // Reverse the direction of the ball, at the X-axis
+             x_speed  =  x_speed * -1.2;   // Reverse the direction of the ball, at the X-axis
          }   
          if  (x_speed  >  10 ){
-         x_speed  =  1.1;
+           constrain(x,  0,  width);
+           x_speed  =  1.1;
          } else if (x_speed  < -10){
-         y_speed  =  -1.1;
+           constrain(x,  0,  width);
+           y_speed  =  -1.1;
          }
          
          y   = y  +  y_speed;            // Moving the ball 1 pixel
          if ((y > height) || (y < 0)) {  // When the ball hits the corner at the Y-axis do the following code
-         y_speed  =  y_speed  *  -2.0;     // Reverse the direction of the ball, at the Y-axis
+         
+         y_speed  =  y_speed  *  -1.2;     // Reverse the direction of the ball, at the Y-axis
          }
          if  (y_speed >  10){
-         y_speed  =  1.1;
+           constrain(y,  height,  0);    //  //  Limiting the ball to the bounderies of the program-window on the Y-Axis
+           y_speed  =  1.1;
          }  else if (y_speed <  -10){
+           constrain(y,  0,  height);      //  Limiting the ball to the bounderies of the program-window on the Y-Axis
          y_speed  =  -1.1;
          }
         // Display circle at x location 
@@ -70,7 +76,8 @@ void draw(){
         fill(175);                       // Setting the color of the ball to grey
         int x_ballSize  =  32;
         int y_ballSize  =  32;
-        
+        constrain(x,  0,  width);
+        constrain(y,  0,  height);
         
         
         ellipse(x,y,x_ballSize,y_ballSize);  // Placing the ball at x- & y-coordinates and setting the ballSize
